@@ -1,0 +1,57 @@
+﻿<Window x:Class="UpdateProduct.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UpdateProduct"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="web_source" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding id}" Header="id"/>
+                    <DataGridTextColumn Binding="{Binding name}" Header="name" Width="200"/>
+                    <DataGridTextColumn Binding="{Binding price}" Header="price"/>
+                    <DataGridTextColumn Binding="{Binding sale_price}" Header="sale_price"/>
+                    
+                    <DataGridTextColumn Binding="{Binding parent_id}" Header="parent_id"/>
+                    <DataGridTemplateColumn Header="categories">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox ItemsSource="{Binding categories}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding name}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="sapo_source"  Grid.Column="1">
+            </DataGrid>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Content="Refresh Product" Click="Refresh_Click"/>
+            <Button Content="Create Product" Click="Button_Click"/>
+            <Button Content="Update Product" Click="Update_Click"/>
+        </StackPanel>
+    </Grid>
+   
+</Window>
