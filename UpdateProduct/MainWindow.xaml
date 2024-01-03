@@ -43,8 +43,52 @@
                     
                 </DataGrid.Columns>
             </DataGrid>
-            <DataGrid x:Name="sapo_source"  Grid.Column="1">
-            </DataGrid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid x:Name="sapo_source" />
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <TextBlock x:Name="txtAddress"/>
+                        <TextBlock x:Name="txtPhone"/>
+                        <TextBlock x:Name="txtpayment"/>
+                    </StackPanel>
+
+                    <DataGrid x:Name="order_products_lst" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Tên" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Tên" Binding="{Binding SapoName}"/>
+                            <DataGridTemplateColumn Header="Ảnh">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding ProductImage}" Width="200" Height="200" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Đơn Giá" Binding="{Binding Price}"/>
+                            <DataGridTextColumn Header="SL" Binding="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Tổng" Binding="{Binding Total}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Button Content="Reload" Click="Button_Orders"/>
+                    <Button Content="Update" Click="Button_OrderUpdate"/>
+                </StackPanel>
+
+            </Grid>
+           
         </Grid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
